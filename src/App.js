@@ -6,19 +6,21 @@ import './style.css';
 const KEY = 'todoApp.todos';
 
 export default function App() {
-   
+  
+  const [todos, setTodos] = useState([]);
+  
+  
   useEffect(() => {
+    
     const storedTodos = JSON.parse(localStorage.getItem(KEY));
     if (storedTodos) {
       setTodos(storedTodos);
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem(KEY, JSON.stringify(todos));
   }, [todos]);
- 
-  const [todos, setTodos] = useState([]);
 
   const todoTaskRef = useRef();
 
